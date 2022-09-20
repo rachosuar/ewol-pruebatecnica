@@ -67,11 +67,13 @@ const Timmer = ({ alarm, setAlarm }) => {
     );
   };
   useEffect(() => {
+    //activar alarm
     if (condition === "down" && hour === 0 && min === 0 && sec === 1) {
       setSec(0);
       setMin(0);
-
-      activateAlarm();
+      clearInterval(timer);
+      setAlarm(true);
+      setCondition("");
     }
     if (condition === "up" && sec >= 99) {
       setSec(0);
@@ -92,13 +94,8 @@ const Timmer = ({ alarm, setAlarm }) => {
     }
 
     // eslint-disable-next-line
-  }, [sec, min, hour, condition]);
-  //activar alarm
-  let activateAlarm = () => {
-    for (let i = 0; i < 10000; i++) clearInterval(i);
-    setAlarm(true);
-    setCondition("");
-  };
+  }, [sec, min, hour, condition, timer]);
+
   // resetear contador
   let resetear = () => {
     setHour(0);

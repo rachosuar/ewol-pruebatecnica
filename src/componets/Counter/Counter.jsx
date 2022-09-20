@@ -51,17 +51,14 @@ const Counter = ({ alarm, setAlarm }) => {
     );
   };
   useEffect(() => {
+    //activar alarma
     if (counter === 0 && condition === "down") {
-      activateAlarm();
+      clearInterval(timer);
+      setAlarm(true);
+      setCondition("");
     } // eslint-disable-next-line
-  }, [counter, condition]);
+  }, [counter, condition, timer]);
 
-  //activar alarma
-  let activateAlarm = () => {
-    for (let i = 0; i < 1000; i++) clearInterval(i);
-    setAlarm(true);
-    setCondition("");
-  };
   //contador a 0
   let resetear = () => {
     setCounter(0);
